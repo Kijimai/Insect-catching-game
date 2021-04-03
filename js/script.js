@@ -6,10 +6,14 @@ const timeEl = document.getElementById('time')
 const scoreEl = document.getElementById('score')
 const message = document.getElementById('message')
 const backgroundImg = document.querySelector('.backgroundImg')
+const IMAGE_NO_DRAG = document.querySelectorAll('img')
 
 let seconds = 0
 let score = 0
 let selected_insect = {}
+
+// Disable dragging on all image elements
+IMAGE_NO_DRAG.ondragstart = function() { return false; };
 
 start_btn.addEventListener('click', () => screens[0].classList.add('up'))
 
@@ -46,12 +50,14 @@ function createInsect() {
   const { x, y } = getRandomLocation()
   insect.style.top = `${y}px`
   insect.style.left = `${x}px`
-  insect.innerHTML = `<img src="${selected_insect.src}" alt="${selected_insect.alt}" style="transform: rotate(${Math.random() * 360}deg)">`
+  insect.innerHTML = `<img src="${selected_insect.src}" alt="${selected_insect.alt}" style="transform: rotate(${Math.random() * 360}deg)" draggable="false">`
 
   insect.addEventListener('click', catchInsect)
 
   game_container.appendChild(insect)
 }
+
+
 
 function getRandomLocation() {
   const width = window.innerWidth
