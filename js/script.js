@@ -5,6 +5,7 @@ const game_container = document.getElementById('game-container')
 const timeEl = document.getElementById('time')
 const scoreEl = document.getElementById('score')
 const message = document.getElementById('message')
+const backgroundImg = document.querySelector('.backgroundImg')
 
 let seconds = 0
 let score = 0
@@ -18,6 +19,9 @@ choose_insect_btns.forEach(btn => {
     const src = img.getAttribute('src')
     const alt = img.getAttribute('alt')
     selected_insect = { src, alt }
+    if(selected_insect.alt === 'goobbue') {
+      changeMessage()
+    }
     screens[1].classList.add('up')
     setTimeout(createInsect, 1000) 
     startGame()
@@ -74,6 +78,14 @@ function increaseScore() {
   score++
   if(score > 19) {
     message.classList.add('visible')
+    backgroundImg.classList.add('showImage')
   }
   scoreEl.innerHTML = `Score: ${score}`
+}
+
+function changeMessage() {
+  message.innerHTML = `
+  YOU CAN'T STOP THE GOOBBUE DOMINATION <br>
+  GOOBBUE WILL RULE THE WORLD!
+  `
 }
