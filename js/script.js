@@ -25,6 +25,7 @@ choose_insect_btns.forEach(btn => {
     selected_insect = { src, alt }
     if(selected_insect.alt === 'goobbue') {
       changeMessage()
+      playMusic()
     }
     screens[1].classList.add('up')
     setTimeout(createInsect, 1000) 
@@ -84,7 +85,9 @@ function increaseScore() {
   score++
   if(score > 19) {
     message.classList.add('visible')
-    backgroundImg.classList.add('showImage')
+    if(selected_insect.alt === 'goobbue') {
+      backgroundImg.classList.add('showImage')
+    }
   }
   scoreEl.innerHTML = `Score: ${score}`
 }
@@ -94,4 +97,11 @@ function changeMessage() {
   YOU CAN'T STOP THE GOOBBUE DOMINATION <br>
   GOOBBUE WILL RULE THE WORLD!
   `
+}
+
+function playMusic() {
+  const music = new Audio('../sounds/Chocobo-kazoo.mp3')
+  music.volume = .5
+  music.play()
+  music.loop = true
 }

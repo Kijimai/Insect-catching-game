@@ -151,6 +151,7 @@ h1 {
 .insect img {
   height: 100px;
   width: 100px;
+  user-select: none;
 }
 
 .backgroundImg {
